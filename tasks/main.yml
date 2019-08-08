@@ -6,6 +6,13 @@
     state: stopped
     enabled: no
 
+- name: Unlock hard nofile limits for wildcard domain
+  pam_limits:
+    domain: '*'
+    limit_type: hard
+    limit_item: nofile
+    value: unlimited
+
 - include: check_vars.yml
   tags:
     - proxysql
