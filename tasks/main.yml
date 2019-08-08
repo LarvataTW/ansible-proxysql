@@ -1,8 +1,8 @@
 ---
 
-- name: Stop and disable appromar
+- name: Stop and disable apparmor
   service:
-    name: appromar
+    name: apparmor
     state: stopped
     enabled: no
 
