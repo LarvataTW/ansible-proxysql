@@ -32,6 +32,16 @@ proxysql_mysql_query_rules: []
 #     hostgroup: 1
 proxysql_mysql_servers: []
 
+# ProxySQL Servers
+# Format:
+# proxysql_cluster_servers:
+#   - address: 127.0.0.1
+#     port: 6032
+#     comment: foo
+#   - address: 1.2.3.4
+#     comment: bar
+proxysql_cluster_servers: []
+
 # Users
 # Format:
 # proxysql_mysql_users:
