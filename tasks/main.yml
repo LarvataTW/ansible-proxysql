@@ -1,4 +1,11 @@
 ---
+
+- name: Stop and disable appromar
+  service:
+    name: appromar
+    state: stopped
+    enabled: no
+
 - include: check_vars.yml
   tags:
     - proxysql
