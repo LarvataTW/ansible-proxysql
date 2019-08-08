@@ -50,7 +50,7 @@ proxysql_cluster_servers: []
 #     default_hostgroup: 0  # default: 0
 proxysql_mysql_users: []
 
-proxysql_cluster_name: false
+proxysql_cluster_username: false
 proxysql_cluster_password: false
 
 proxysql_mysql_server_version: 5.1.30

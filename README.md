@@ -68,7 +68,7 @@ When using cluster mode, the following variables must be set:
 
 | Name                           | Default | Type   | Description                                       |
 | -----                          | ------- | ------ | --------------------------------------------      |
-| proxysql_cluster_name          | false   | String | ProxySQL name                                     |
+| proxysql_cluster_username      | false   | String | ProxySQL cluster name & cluster username          |
 | proxysql_cluster_password      | false   | String | ProxySQL password for cluster communications      |
 | proxysql_cluster_servers       | []      | Array  | Specify your ProxySQL Servers the be a cluster    |
 

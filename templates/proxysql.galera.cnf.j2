@@ -12,14 +12,14 @@ admin_variables =
   stats_credentials="stats:{{ proxysql_stats_password }}"
   web_enabled="{{ proxysql_web_enabled }}"
   web_port={{ proxysql_web_port }}
-{% if proxysql_cluster_name %}
-  cluster_username="{{ proxysql_cluster_name }}"
+{% if proxysql_cluster_username %}
+  cluster_username="{{ proxysql_cluster_username }}"
   cluster_password="{{ proxysql_cluster_password }}"
 {% endif %}
 # debug=true
 }
 
-{% if proxysql_cluster_name %}
+{% if proxysql_cluster_username %}
 proxysql_servers =
 (
 {% for host in proxysql_cluster_servers %}
