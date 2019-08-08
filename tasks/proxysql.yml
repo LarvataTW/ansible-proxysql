@@ -28,7 +28,7 @@
 
 - name: Configures proxysql
   template:
-    src: proxysql.cnf.j2
+    src: "proxysql.{{ proxysql_mysql_server_type }}.cnf.j2"
     dest: /etc/proxysql.cnf
     mode: 0644
     backup: true
