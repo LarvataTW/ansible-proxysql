@@ -70,7 +70,7 @@ When using cluster mode, the following variables must be set:
 | -----                          | ------- | ------ | --------------------------------------------      |
 | proxysql_cluster_name          | false   | String | ProxySQL name                                     |
 | proxysql_cluster_password      | false   | String | ProxySQL password for cluster communications      |
-| proxysql_cluster_servers_group | false   | String | Ansible group containing ProxySQL cluster members |
+| proxysql_cluster_servers       | []      | Array  | Specify your ProxySQL Servers the be a cluster    |
 
 ## Example
 
