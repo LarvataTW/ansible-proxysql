@@ -5,22 +5,18 @@
     state: present
 
 - name: Adds percona repositories
-  apt_repository:
-    repo: 'deb http://repo.proxysql.com/ProxySQL/proxysql-1.4.x/{{ ansible_distribution_release }} ./'
-    state: present
+  apt:
+    deb: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+  register: adds_percona_repositories
 
 - name: Installs proxysql & python-mysqldb
   apt:
     pkg: "{{ item }}"
     state: present
   with_items:
-    - proxysql
+    - proxysql2
     - python-mysqldb
-
-- name: Holds proxysql version
-  dpkg_selections:
-    name: proxysql
-    selection: hold
+  when: adds_percona_repositories
 
 - name: Installs mysql-common & client
   apt:
@@ -43,6 +39,7 @@
   service:
     name: proxysql
     state: started
+    enabled: yes
 
 - name: Creates log dir
   file:
