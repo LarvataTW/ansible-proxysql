@@ -40,8 +40,20 @@ proxysql_mysql_servers: []
 #     default_hostgroup: 0  # default: 0
 proxysql_mysql_users: []
 
-
 proxysql_cluster_name: false
 proxysql_cluster_password: false
 
-proxysql_mysql_server_version: 5.5.30
+proxysql_mysql_server_version: 5.1.30
+proxysql_mysql_server_type: galera # mysql / galera
+
+proxysql_web_enabled: true
+proxysql_web_port: 6080
+
+proxysql_stats_password: stats
+
+proxysql_monitor_username: proxysql_monitor
+proxysql_monitor_password: proxysql_monitor
+
+proxysql_galera_writer_hostgroup: 10
+proxysql_galera_reader_hostgroup: 20
+proxysql_galera_backup_writer_hostgroup: 30
