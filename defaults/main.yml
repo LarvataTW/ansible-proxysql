@@ -11,6 +11,17 @@ proxysql_initial: false
 proxysql_mysql_interface: 127.0.0.1
 proxysql_mysql_port: 6033
 
+# Golbal Variables
+# Format:
+# proxysql_global_variables:
+#   - name: "admin-admin_credentials"
+#     value: "admin:admin;proxysql_admin:proxsql_password"
+#   - name: "admin-cluster_username"
+#     value: "proxsql_admin"
+#   - name: "admin-cluster_password"
+#     value: "proxsql_password"
+proxysql_global_variables: []
+
 # Query rules
 # Format:
 # proxysql_mysql_query_rules:

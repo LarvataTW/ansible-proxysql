@@ -39,14 +39,15 @@ Tested on 2.5.0. Should work on 2.3+
 | proxysql_mysql_servers                  | []                  | Array  | Configuration-file servers                                        |
 | proxysql_mysql_users                    | []                  | Array  | Configuration-file users                                          |
 | proxysql_mysql_server_type              | galera              | String | The backend databases could be 'galera' or 'mysql'                |
-| proxysql_web_enabled                    | true                | Bool   |  Enable the ProxySQL 2 stats web or not                           |
-| proxysql_web_port                       | 6080                | Number |  The ProxySQL 2 stats web port                                    |
-| proxysql_stats_password                 | stats               | String |  Password for stats_credentials                                   |
-| proxysql_monitor_username               | proxysql_monitor    | String |  Username for the database account to monitor status              |
-| proxysql_monitor_password               | proxysql_monitor    | String |  Password for the database account to monitor status              |
-| proxysql_galera_writer_hostgroup        | 10                  | Number |  Group number of writing nodes in Galera Cluster                  |
-| proxysql_galera_reader_hostgroup        | 20                  | Number |  Group number of reading nodes in Galera Cluster                  |
-| proxysql_galera_backup_writer_hostgroup | 30                  | Number |  Group number of backup writing nodes in Galera Cluster           |
+| proxysql_web_enabled                    | true                | Bool   | Enable the ProxySQL 2 stats web or not                            |
+| proxysql_web_port                       | 6080                | Number | The ProxySQL 2 stats web port                                     |
+| proxysql_stats_password                 | stats               | String | Password for stats_credentials                                    |
+| proxysql_monitor_username               | proxysql_monitor    | String | Username for the database account to monitor status               |
+| proxysql_monitor_password               | proxysql_monitor    | String | Password for the database account to monitor status               |
+| proxysql_galera_writer_hostgroup        | 10                  | Number | Group number of writing nodes in Galera Cluster                   |
+| proxysql_galera_reader_hostgroup        | 20                  | Number | Group number of reading nodes in Galera Cluster                   |
+| proxysql_galera_backup_writer_hostgroup | 30                  | Number | Group number of backup writing nodes in Galera Cluster            |
+| proxysql_global_variables               | []                  | Array  | Setup ProxySQL global variables                                   |
 
 If you don't want to list `proxy_mysql_servers` in variables, you can
 set `proxy_mysql_servers_group` instead. The rolle will populate
