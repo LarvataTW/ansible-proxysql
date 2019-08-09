@@ -106,7 +106,7 @@ mysql_users =
   {
     username="{{ usr.username }}",
     password="{{ usr.password }}",
-    default_hostgroup="{{ usr.default_hostgroup | default(0) }}",
+    default_hostgroup={{ usr.default_hostgroup | default(0) }},
     transaction_persistent = 0,
     active = 1
   }{% if not loop.last %},{% endif %}

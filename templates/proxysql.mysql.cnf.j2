@@ -76,7 +76,8 @@ mysql_servers =
   {
     address="{{ srv.address }}",
     port={{ srv.port }},
-    hostgroup={{ srv.hostgroup }}
+    hostgroup={{ srv.hostgroup }},
+    max_connections={{ srv.max_connections }}
   }{% if not loop.last %},{% endif %}
 {% endfor %}
 {% if proxysql_mysql_servers_group is defined %}
@@ -84,7 +85,8 @@ mysql_servers =
   {
     address="{{ hostvars[srv]['ansible_' + hostvars[srv].proxysql_upstream_mysql_interface].ipv4.address }}",
     port={{ hostvars[srv].proxysql_upstream_mysql_port | default(3306) }},
-    hostgroup={{ hostvars[srv].proxysql_hostgroup }}
+    hostgroup={{ hostvars[srv].proxysql_hostgroup }},
+    max_connections={{ srv.max_connections }}
   }{% if not loop.last %},{% endif %}
 {%   endfor %}
 {% endif %}
@@ -98,7 +100,7 @@ mysql_users =
   {
     username="{{ usr.username }}",
     password="{{ usr.password }}",
-    default_hostgroup="{{ usr.default_hostgroup | default(0) }}",
+    default_hostgroup={{ usr.default_hostgroup | default(0) }},
     transaction_persistent = 0,
     active = 1
   }{% if not loop.last %},{% endif %}
