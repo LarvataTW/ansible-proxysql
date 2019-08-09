@@ -36,13 +36,13 @@
   notify:
     - Load config from file to memory
 
-- name: Configures proxysql global variables
+- name: Setup proxysql global variables
   proxysql_global_variables:
     login_user: "{{ proxysql_admin_user }}"
     login_password: "{{ proxysql_admin_password }}"
     variable: "{{ item.name }}"
     value: "{{ item.value }}"
-  with_items: proxysql_global_variables
+  with_items: "{{ proxysql_global_variables }}"
 
 - name: Ensures proxysql is started
   service:
