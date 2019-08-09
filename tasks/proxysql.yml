@@ -36,19 +36,12 @@
   notify:
     - Load config from file to memory
 
-- name: Setup proxysql global variables
-  proxysql_global_variables:
-    login_user: "{{ proxysql_admin_user }}"
-    login_password: "{{ proxysql_admin_password }}"
-    variable: "{{ item.name }}"
-    value: "{{ item.value }}"
-  with_items: "{{ proxysql_global_variables }}"
-
 - name: Ensures proxysql is started
   service:
     name: proxysql
     state: started
     enabled: yes
+  register: proxysql_is_started
 
 - name: Creates log dir
   file:
@@ -60,3 +53,12 @@
     src: proxysql.logrotate.conf.j2
     dest: /etc/logrotate.d/proxysql
     mode: 0644
+
+- name: Setup proxysql global variables
+  proxysql_global_variables:
+    login_user: "{{ proxysql_admin_user }}"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "{{ item.name }}"
+    value: "{{ item.value }}"
+  with_items: "{{ proxysql_global_variables }}"
+  when: proxysql_is_started
