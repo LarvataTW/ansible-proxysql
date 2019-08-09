@@ -27,7 +27,8 @@ proxysql_servers =
         hostname="{{ host.address }}"
         port={{ host.port | default(proxysql_admin_port) }}
         comment="{{ host.comment }}"
-    }{% if not loop.last %},{% endif %}
+    }{% if not loop.last %},
+    {% endif %}
 {% endfor %}
 )
 
@@ -84,7 +85,8 @@ mysql_servers =
     port={{ srv.port }},
     hostgroup={{ srv.hostgroup }},
     max_connections={{ srv.max_connections }}
-  }{% if not loop.last %},{% endif %}
+  }{% if not loop.last %},
+  {% endif %}
 {% endfor %}
 {% if proxysql_mysql_servers_group is defined %}
 {%   for srv in groups[proxysql_mysql_servers_group] %}
@@ -93,7 +95,8 @@ mysql_servers =
     port={{ hostvars[srv].proxysql_upstream_mysql_port | default(3306) }},
     hostgroup={{ hostvars[srv].proxysql_hostgroup }},
     max_connections={{ srv.max_connections }}
-  }{% if not loop.last %},{% endif %}
+  }{% if not loop.last %},
+  {% endif %}
 {%   endfor %}
 {% endif %}
 )
@@ -109,7 +112,8 @@ mysql_users =
     default_hostgroup={{ usr.default_hostgroup | default(0) }},
     transaction_persistent = 0,
     active = 1
-  }{% if not loop.last %},{% endif %}
+  }{% if not loop.last %},
+  {% endif %}
 {% endfor %}
 )
 
@@ -126,7 +130,6 @@ mysql_query_rules =
     apply=1
   }
 {%   if not loop.last %},
-
 {%   endif %}
 {% endfor %}
 )
