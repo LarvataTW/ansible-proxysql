@@ -10,7 +10,7 @@ admin_variables =
   mysql_ifaces="{{ proxysql_admin_interface }}:{{ proxysql_admin_port }};/tmp/proxysql_admin.sock"
   refresh_interval=2000
   stats_credentials="stats:{{ proxysql_stats_password }}"
-  web_enabled="{{ proxysql_web_enabled }}"
+  web_enabled={{ proxysql_web_enabled }}
   web_port={{ proxysql_web_port }}
 {% if proxysql_cluster_username %}
   cluster_username="{{ proxysql_cluster_username }}"
@@ -28,8 +28,10 @@ proxysql_servers =
         port={{ host.port | default(proxysql_admin_port) }}
         comment="{{ host.comment }}"
     }{% if not loop.last %},
+
     {% endif %}
 {% endfor %}
+
 )
 
 {% endif %}
@@ -86,7 +88,9 @@ mysql_servers =
     hostgroup={{ srv.hostgroup }},
     max_connections={{ srv.max_connections }}
   }{% if not loop.last %},
+
   {% endif %}
+
 {% endfor %}
 {% if proxysql_mysql_servers_group is defined %}
 {%   for srv in groups[proxysql_mysql_servers_group] %}
@@ -96,7 +100,9 @@ mysql_servers =
     hostgroup={{ hostvars[srv].proxysql_hostgroup }},
     max_connections={{ srv.max_connections }}
   }{% if not loop.last %},
+
   {% endif %}
+
 {%   endfor %}
 {% endif %}
 )
@@ -113,7 +119,9 @@ mysql_users =
     transaction_persistent = 0,
     active = 1
   }{% if not loop.last %},
+
   {% endif %}
+
 {% endfor %}
 )
 

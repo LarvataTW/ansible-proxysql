@@ -43,6 +43,8 @@
   proxysql_global_variables:
     login_user: "{{ proxysql_admin_user }}"
     login_password: "{{ proxysql_admin_password }}"
+    login_host: "{{ proxysql_admin_interface }}"
+    login_port: "{{ proxysql_admin_port }}"
     variable: "{{ item.name }}"
     value: "{{ item.value }}"
   with_items: "{{ proxysql_global_variables }}"
