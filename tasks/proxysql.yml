@@ -13,6 +13,7 @@
   apt:
     pkg: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
     - proxysql2
     - python3-pymysql
@@ -23,9 +24,11 @@
   apt:
     pkg: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
     - mysql-common
     - mysql-client
+  when: adds_percona_repositories
 
 - name: Configures proxysql
   template:
