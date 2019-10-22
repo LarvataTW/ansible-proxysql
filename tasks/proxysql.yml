@@ -37,13 +37,8 @@
     mode: 0644
     backup: true
   notify:
+    - Restart proxysql
     - Load config from file to memory
-
-- name: Ensures proxysql is stopped
-  service:
-    name: proxysql
-    state: stopped
-  when: proxysql_initial
 
 - name: Ensures proxysql is started
   service:
