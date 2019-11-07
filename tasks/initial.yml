@@ -15,6 +15,5 @@
   meta: flush_handlers
 
 - name: Kill initial proxysql
-  service:
-    name: proxysql
-    state: stopped
+  shell: pkill -f proxysql
+  become: yes
