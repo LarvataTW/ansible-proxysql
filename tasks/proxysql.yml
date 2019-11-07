@@ -37,15 +37,18 @@
     mode: 0644
     backup: true
   notify:
-    - Restart proxysql
     - Load config from file to memory
+
+- include: initial.yml
+  when: proxysql_initial
+  tags:
+    - initial
 
 - name: Ensures proxysql is started
   service:
     name: proxysql
     state: started
     enabled: yes
-  when: not proxysql_initial
 
 - name: Creates log dir
   file:

@@ -1,0 +1,20 @@
+---
+
+- name: Kill normal proxysql
+  service:
+    name: proxysql
+    state: stopped
+
+- name: Start proxysql initial
+  command: service proxysql initial
+  when: proxysql_initial
+  tags:
+    - skip_ansible_lint
+
+- name: Force run handlers and load initial configs
+  meta: flush_handlers
+
+- name: Kill initial proxysql
+  service:
+    name: proxysql
+    state: stopped
