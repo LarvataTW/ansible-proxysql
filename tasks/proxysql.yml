@@ -9,6 +9,15 @@
     deb: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
   register: adds_percona_repositories
 
+- name: Configures proxysql
+  template:
+    src: "proxysql.{{ proxysql_mysql_server_type }}.cnf.j2"
+    dest: /etc/proxysql.cnf
+    mode: 0644
+    backup: true
+  notify:
+    - Load config from file to memory
+
 - name: Installs proxysql & python-mysqldb
   apt:
     pkg: "{{ item }}"
@@ -17,7 +26,6 @@
   with_items:
     - proxysql2
     - python3-pymysql
-    - python-pymysql
   when: adds_percona_repositories
 
 - name: Installs mysql-common & client
@@ -29,20 +37,6 @@
     - mysql-common
     - mysql-client
   when: adds_percona_repositories
-
-- name: Configures proxysql
-  template:
-    src: "proxysql.{{ proxysql_mysql_server_type }}.cnf.j2"
-    dest: /etc/proxysql.cnf
-    mode: 0644
-    backup: true
-  notify:
-    - Load config from file to memory
-
-- include: initial.yml
-  when: proxysql_initial
-  tags:
-    - initial
 
 - name: Ensures proxysql is started
   service:

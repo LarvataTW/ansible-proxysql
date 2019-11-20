@@ -23,6 +23,7 @@ admin_variables =
 proxysql_servers =
 (
 {% for host in proxysql_cluster_servers %}
+
     {
         hostname="{{ host.address }}"
         port={{ host.port | default(proxysql_admin_port) }}
