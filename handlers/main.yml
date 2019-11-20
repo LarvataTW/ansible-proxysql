@@ -40,13 +40,11 @@
     - Setup proxysql global variables
 
 - name: Setup proxysql global variables
-  proxysql_global_variables:
-    login_user: "{{ proxysql_admin_user }}"
-    login_password: "{{ proxysql_admin_password }}"
-    login_host: "{{ proxysql_admin_interface }}"
-    login_port: "{{ proxysql_admin_port }}"
-    variable: "{{ item.name }}"
-    value: "{{ item.value }}"
+  command: >
+    mysql -v -u {{ proxysql_admin_user }} -p{{ proxysql_admin_password }}
+    -P {{ proxysql_admin_port }}
+    -h {{ proxysql_admin_interface }}
+    -e "update global_variables set variable_value = '{{ item.value }}' where variable_name = '{{ item.name }}';"
   with_items: "{{ proxysql_global_variables }}"
   notify:
     - Copy config from memory to runtime
